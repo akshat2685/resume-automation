@@ -1,0 +1,3 @@
+# Write any manual activities (certifications, courses, LinkedIn updates) below.
+# One entry per line. Example: Completed AWS Cloud Practitioner Certification
+# Lines starting with '#' are ignored.

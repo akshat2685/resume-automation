@@ -1,0 +1,49 @@
+name: Portfolio Auto-Update
+
+on:
+  schedule:
+    # Runs at 14:30 UTC (8:00 PM IST) every Saturday
+    - cron: '30 14 * * 6'
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+
+jobs:
+  update-portfolio:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write # Needed to commit and push changes back
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f agent/requirements.txt ]; then pip install -r agent/requirements.txt; fi
+
+      - name: Run Update Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python agent/update_agent.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "portfolio-bot[bot]"
+          git config --global user.email "portfolio-bot[bot]@users.noreply.github.com"
+          
+          # Check if there are changes to commit
+          if git diff --quiet src/data/portfolioData.json agent/activity_inputs.txt; then
+            echo "No changes detected. Skipping commit."
+          else
+            git add src/data/portfolioData.json agent/activity_inputs.txt
+            git commit -m "chore: auto-update portfolio details [skip ci]"
+            git push
+          fi

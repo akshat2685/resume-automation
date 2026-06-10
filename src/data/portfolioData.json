@@ -1,0 +1,80 @@
+{
+  "skills": [
+    {
+      "category": "AI & Automation",
+      "items": ["AI Agents", "Workflow Automation", "OpenAI API", "OCR Solutions"]
+    },
+    {
+      "category": "3D & Creative",
+      "items": ["3D Modeling", "Blender", "Three.js / R3F", "GLTF/GLB Assets"]
+    },
+    {
+      "category": "Languages",
+      "items": ["Python", "C++", "HTML/CSS"]
+    },
+    {
+      "category": "Tools",
+      "items": ["Git", "GitHub", "Vite", "Linux"]
+    }
+  ],
+  "services": [
+    {
+      "title": "AI Agent Development",
+      "desc": "Design and deployment of autonomous AI agents capable of customer support, lead qualification, workflow automation, and business operations."
+    },
+    {
+      "title": "3D & Creative Design",
+      "desc": "Creating interactive 3D graphics, web-based visuals, and custom 3D assets to build premium digital experiences."
+    },
+    {
+      "title": "AI Automation Systems",
+      "desc": "Creating intelligent workflows that automate repetitive business tasks and operations."
+    },
+    {
+      "title": "OCR & Document Intelligence",
+      "desc": "Developing systems that extract and process structured information from invoices, forms, and documents."
+    },
+    {
+      "title": "Python Systems & R&D",
+      "desc": "Developing custom algorithms, chatbot scripts, and backend logic using Python and AI APIs."
+    }
+  ],
+  "projects": [
+    {
+      "title": "AI Invoice OCR System",
+      "tech": ["Python", "OCR", "AI Libraries"],
+      "desc": "AI-powered invoice processing system that automatically extracts structured information from invoices and documents.",
+      "link": "https://github.com/akshat2685/ai-idp-ocr-invoice",
+      "img": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80"
+    },
+    {
+      "title": "Python AI Chat Assistant",
+      "tech": ["Python", "OpenAI API"],
+      "desc": "A conversational AI chatbot designed for intelligent desktop assistance and text-based problem solving.",
+      "link": "https://github.com/akshat2685/nextjs-ai-chatbot",
+      "img": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80"
+    },
+    {
+      "title": "Lead Genie Pipeline",
+      "tech": ["Python", "Pandas"],
+      "desc": "Automated lead classification and processing pipeline designed for intelligent workflow automation.",
+      "link": "https://github.com/akshat2685/lead-genie-pipeline",
+      "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+    }
+  ],
+  "certifications": [
+    "Deloitte Technology Job Simulation",
+    "Google Discover AI in Daily Life",
+    "TryHackMe Cyber Security Training",
+    "Red Hat Linux Training",
+    "Introduction to C++",
+    "Introduction to Python"
+  ],
+  "currentlyBuilding": [
+    "AI Sales Agents",
+    "Lead Automation Systems",
+    "CRM Intelligence Workflows",
+    "Voice AI Solutions",
+    "Autonomous Business Agents"
+  ]
+}
