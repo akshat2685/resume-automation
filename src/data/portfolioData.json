@@ -2,19 +2,41 @@
   "skills": [
     {
       "category": "AI & Automation",
-      "items": ["AI Agents", "Workflow Automation", "OpenAI API", "OCR Solutions"]
+      "items": [
+        "AI Agents",
+        "Workflow Automation",
+        "OpenAI API",
+        "OCR Solutions"
+      ]
     },
     {
       "category": "3D & Creative",
-      "items": ["3D Modeling", "Blender", "Three.js / R3F", "GLTF/GLB Assets"]
+      "items": [
+        "3D Modeling",
+        "Blender",
+        "Three.js / R3F",
+        "GLTF/GLB Assets"
+      ]
     },
     {
       "category": "Languages",
-      "items": ["Python", "C++", "HTML/CSS"]
+      "items": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "C++",
+        "HTML/CSS"
+      ]
     },
     {
       "category": "Tools",
-      "items": ["Git", "GitHub", "Vite", "Linux"]
+      "items": [
+        "Git",
+        "GitHub",
+        "Vite",
+        "Linux",
+        "Docker"
+      ]
     }
   ],
   "services": [
@@ -41,22 +63,54 @@
   ],
   "projects": [
     {
+      "title": "Lead Agent MVP",
+      "tech": [
+        "Python",
+        "Docker",
+        "Telegram API"
+      ],
+      "desc": "An autonomous AI lead routing and qualification engine featuring multi-channel orchestration, scoring algorithms, persistence memory, and integrated CRM synchronization.",
+      "link": "https://github.com/akshat2685/lead-agent-mvp",
+      "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+    },
+    {
+      "title": "AI Portfolio & Resume Agent",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "Three.js"
+      ],
+      "desc": "An automated system that continuously monitors developer activities, uses agentic workflows to structure resume data, and deploys 3D portfolio experiences.",
+      "link": "https://github.com/akshat2685/resume-automation",
+      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
+    },
+    {
       "title": "AI Invoice OCR System",
-      "tech": ["Python", "OCR", "AI Libraries"],
+      "tech": [
+        "Python",
+        "OCR",
+        "AI Libraries"
+      ],
       "desc": "AI-powered invoice processing system that automatically extracts structured information from invoices and documents.",
       "link": "https://github.com/akshat2685/ai-idp-ocr-invoice",
       "img": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80"
     },
     {
       "title": "Python AI Chat Assistant",
-      "tech": ["Python", "OpenAI API"],
+      "tech": [
+        "Python",
+        "OpenAI API"
+      ],
       "desc": "A conversational AI chatbot designed for intelligent desktop assistance and text-based problem solving.",
       "link": "https://github.com/akshat2685/nextjs-ai-chatbot",
       "img": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80"
     },
     {
       "title": "Lead Genie Pipeline",
-      "tech": ["Python", "Pandas"],
+      "tech": [
+        "Python",
+        "Pandas"
+      ],
       "desc": "Automated lead classification and processing pipeline designed for intelligent workflow automation.",
       "link": "https://github.com/akshat2685/lead-genie-pipeline",
       "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
