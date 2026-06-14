@@ -25,6 +25,7 @@
         "TypeScript",
         "JavaScript",
         "C++",
+        "Kotlin",
         "HTML/CSS"
       ]
     },
@@ -35,7 +36,8 @@
         "GitHub",
         "Vite",
         "Linux",
-        "Docker"
+        "Docker",
+        "PowerShell"
       ]
     }
   ],
@@ -85,6 +87,17 @@
       "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
     },
     {
+      "title": "AI Sales Agent",
+      "tech": [
+        "Python",
+        "AI Agents",
+        "OpenAI API"
+      ],
+      "desc": "An autonomous AI sales representative engineered for automated lead outreach, product demonstration scripting, and intelligent customer inquiry handling.",
+      "link": "https://github.com/akshat2685/sales_agent",
+      "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+    },
+    {
       "title": "AI Invoice OCR System",
       "tech": [
         "Python",
@@ -114,6 +127,16 @@
       "desc": "Automated lead classification and processing pipeline designed for intelligent workflow automation.",
       "link": "https://github.com/akshat2685/lead-genie-pipeline",
       "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+    },
+    {
+      "title": "Food Ordering App",
+      "tech": [
+        "Kotlin",
+        "Android SDK"
+      ],
+      "desc": "A native mobile application providing a seamless food ordering experience with intuitive UI, menus, and state management.",
+      "link": "https://github.com/akshat2685/Food-ordering-app-",
+      "img": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80"
     }
   ],
   "certifications": [
@@ -125,7 +148,7 @@
     "Introduction to Python"
   ],
   "currentlyBuilding": [
-    "AI Sales Agents",
+    "Continuous Monitoring Agents",
     "Lead Automation Systems",
     "CRM Intelligence Workflows",
     "Voice AI Solutions",
