@@ -66,7 +66,7 @@ def add_log_entry(source, description):
     # Check if duplicate entry already exists in current logs
     for entry in logs:
         if entry["source"] == source and entry["description"] == description:
-            return
+            return False
             
     new_entry = {
         "timestamp": datetime.now().isoformat(),
@@ -76,11 +76,13 @@ def add_log_entry(source, description):
     logs.append(new_entry)
     save_daily_logs(logs)
     log_message(f"Added new event ({source}): {description}")
+    return True
 
 def fetch_github_events():
     """Fetch recent GitHub activities for the user."""
     url = f"https://api.github.com/users/{GITHUB_USERNAME}/events/public"
     log_message(f"Polling GitHub public events for {GITHUB_USERNAME}...")
+    added_count = 0
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
@@ -95,20 +97,24 @@ def fetch_github_events():
                         message = commit.get("message", "")
                         # Filter out merge commits or trivial commits
                         if not message.startswith("Merge branch") and len(message) > 5:
-                            add_log_entry("github", f"Committed to {repo_name}: {message}")
+                            if add_log_entry("github", f"Committed to {repo_name}: {message}"):
+                                added_count += 1
                 elif event_type == "CreateEvent":
                     ref_type = event.get("payload", {}).get("ref_type")
                     if ref_type == "repository":
-                        add_log_entry("github", f"Created repository: {repo_name}")
+                        if add_log_entry("github", f"Created repository: {repo_name}"):
+                            added_count += 1
         else:
             log_message(f"GitHub API returned status code {response.status_code}")
     except Exception as e:
         log_message(f"Error fetching GitHub events: {e}")
+    return added_count
 
 def scan_local_git_repos():
     """Scans local directories for Git repositories and fetches recent commits."""
     log_message("Scanning local Git repositories...")
     found_repos = set()
+    added_count = 0
     
     for base_dir in MONITORED_DIRS:
         if not os.path.exists(base_dir):
@@ -148,10 +154,12 @@ def scan_local_git_repos():
                     if "|" in line:
                         _, commit_msg = line.split("|", 1)
                         if not commit_msg.startswith("Merge branch") and len(commit_msg) > 5:
-                            add_log_entry("local_git", f"Local commit in '{repo_name}': {commit_msg}")
+                            if add_log_entry("local_git", f"Local commit in '{repo_name}': {commit_msg}"):
+                                added_count += 1
         except Exception as e:
             # Silent fallback if git fails or directory changes
             pass
+    return added_count
 
 def copy_profile_safely(src_dir, dest_dir):
     import shutil
@@ -197,11 +205,12 @@ def copy_profile_safely(src_dir, dest_dir):
 def scrape_linkedin_activity():
     """Launches Playwright using copied user profile to bypass authwall."""
     log_message("Polling LinkedIn profile activity...")
+    added_count = 0
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
         log_message("Playwright not installed, skipping LinkedIn scan.")
-        return
+        return 0
 
     # Check potential profile directories
     profiles = [
@@ -275,7 +284,8 @@ def scrape_linkedin_activity():
                         cleaned_post = post.strip()
                         if len(cleaned_post) > 10:
                             snippet = cleaned_post[:150] + "..." if len(cleaned_post) > 150 else cleaned_post
-                            add_log_entry("linkedin", f"Posted on LinkedIn: {snippet}")
+                            if add_log_entry("linkedin", f"Posted on LinkedIn: {snippet}"):
+                                added_count += 1
                 except Exception as eval_err:
                     log_message(f"Error extracting posts from page: {eval_err}")
             
@@ -291,59 +301,36 @@ def scrape_linkedin_activity():
                 log_message("Cleaned up temporary profile directory.")
             except Exception as e:
                 log_message(f"Warning: Could not clean up temp profile directory: {e}")
+    return added_count
+
+def sync_portfolio_updates():
+    """Run the portfolio updater after a monitoring cycle."""
+    update_script = os.path.join(AGENT_DIR, "update_agent.py")
+    python_exe = sys.executable
+    try:
+        log_message(f"Running portfolio updater: {python_exe} {update_script}")
+        subprocess.run([python_exe, update_script], check=True)
+        log_message("Portfolio updater completed successfully.")
+    except Exception as e:
+        log_message(f"Error during portfolio sync: {e}")
 
 def run_daemon_loop():
     log_message("Starting Portfolio Continuous Monitoring Daemon...")
-    active_minutes_today = 0
-    last_date = datetime.now().date()
-    last_weekly_update_date = None
     
     while True:
-        current_time = datetime.now()
-        current_date = current_time.date()
-        
-        # Saturday 8:00 PM IST (Hour 20) Weekly Update Trigger
-        if current_time.weekday() == 5 and current_time.hour == 20 and last_weekly_update_date != current_date:
-            log_message("It is Saturday 8:00 PM IST. Triggering weekly portfolio integration...")
-            try:
-                update_script = os.path.join(AGENT_DIR, "update_agent.py")
-                python_exe = sys.executable
-                log_message(f"Running weekly update: {python_exe} {update_script}")
-                subprocess.run([python_exe, update_script], check=True)
-                last_weekly_update_date = current_date
-                log_message("Weekly portfolio integration completed successfully.")
-            except Exception as e:
-                log_message(f"Error during weekly portfolio integration: {e}")
-        
-        # Reset daily active counter if date changes
-        if current_date != last_date:
-            active_minutes_today = 0
-            last_date = current_date
-            log_message("New day started. Active monitor counter reset.")
-            
-        idle_time = get_idle_duration()
-        is_active = idle_time < 300 # User active in the last 5 minutes
-        
-        # If user is active and we haven't exceeded 5 hours of monitoring today (300 minutes)
-        if is_active and active_minutes_today < 300:
-            active_minutes_today += 5
-            log_message(f"User is active. Monitoring time today: {active_minutes_today}/300 minutes.")
-            
-            # Poll activities once every hour (or every 12 check-loops since check-loop runs every 5 minutes)
-            if active_minutes_today % 60 == 0 or active_minutes_today == 5:
-                log_message("Performing periodic polling of all sources...")
-                fetch_github_events()
-                scan_local_git_repos()
-                scrape_linkedin_activity()
-        elif not is_active:
-            # Idle, do nothing
-            pass
-        else:
-            # We already monitored 5 hours today, sleep until next check
-            pass
-            
-        # Sleep for 5 minutes before checking active status again
-        time.sleep(300)
+        cycle_started = datetime.now()
+        log_message("Hourly monitoring cycle started.")
+        new_events = 0
+        new_events += fetch_github_events()
+        new_events += scan_local_git_repos()
+        new_events += scrape_linkedin_activity()
+        log_message(f"Hourly monitoring cycle captured {new_events} new activity item(s).")
+        sync_portfolio_updates()
+
+        elapsed = (datetime.now() - cycle_started).total_seconds()
+        sleep_seconds = max(0, 3600 - elapsed)
+        log_message(f"Sleeping for {int(sleep_seconds)} second(s) until the next hourly cycle.")
+        time.sleep(sleep_seconds)
 
 if __name__ == "__main__":
     try:
