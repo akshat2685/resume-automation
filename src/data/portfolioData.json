@@ -137,6 +137,40 @@
       "desc": "A native mobile application providing a seamless food ordering experience with intuitive UI, menus, and state management.",
       "link": "https://github.com/akshat2685/Food-ordering-app-",
       "img": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80"
+    },
+    {
+      "title": "Resume Automation",
+      "tech": [
+        "TypeScript",
+        "Python",
+        "PowerShell",
+        "CSS"
+      ],
+      "desc": "A live portfolio automation platform that summarizes technical activity and syncs updates to the website.",
+      "link": "https://resume-automation-zeta.vercel.app",
+      "img": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&q=80"
+    },
+    {
+      "title": "AKSHAT Software Engineer",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "CSS"
+      ],
+      "desc": "A personal software engineering portfolio focused on projects, skills, and automation work.",
+      "link": "https://akshat-software-engineer.vercel.app",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80"
+    },
+    {
+      "title": "Ai Idp Ocr Invoice",
+      "tech": [
+        "Jupyter Notebook",
+        "OCR Solutions"
+      ],
+      "desc": "AI-based Intelligent Document Processing using OCR and NLP",
+      "link": "https://ai-idp-ocr-invoice.vercel.app",
+      "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80"
     }
   ],
   "certifications": [
@@ -152,6 +186,10 @@
     "Lead Automation Systems",
     "CRM Intelligence Workflows",
     "Voice AI Solutions",
-    "Autonomous Business Agents"
+    "Autonomous Business Agents",
+    "Resume Automation improvements",
+    "Lead Agent Mvp improvements",
+    "Sales Agent improvements",
+    "Ai Idp Ocr Invoice improvements"
   ]
 }
