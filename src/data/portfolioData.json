@@ -8,7 +8,9 @@
         "OpenAI API",
         "OCR Solutions",
         "Gemini API",
-        "Agentic Workflows"
+        "Agentic Workflows",
+        "NLP (Natural Language Processing)",
+        "LangChain"
       ]
     },
     {
@@ -42,7 +44,10 @@
         "Playwright",
         "Linux",
         "Docker",
-        "PowerShell"
+        "PowerShell",
+        "React",
+        "Next.js",
+        "Pandas"
       ]
     }
   ],
@@ -206,6 +211,7 @@
     "Resume Automation improvements",
     "Lead Agent Mvp improvements",
     "Sales Agent improvements",
-    "Ai Idp Ocr Invoice improvements"
+    "Ai Idp Ocr Invoice improvements",
+    "Multi-Agent Orchestration Frameworks"
   ]
 }
