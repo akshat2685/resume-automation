@@ -10,7 +10,8 @@
         "Gemini API",
         "Agentic Workflows",
         "NLP (Natural Language Processing)",
-        "LangChain"
+        "LangChain",
+        "Intelligent Document Processing (IDP)"
       ]
     },
     {
@@ -30,7 +31,9 @@
         "JavaScript",
         "C++",
         "Kotlin",
-        "HTML/CSS"
+        "HTML/CSS",
+        "PowerShell",
+        "Bash"
       ]
     },
     {
@@ -47,7 +50,8 @@
         "PowerShell",
         "React",
         "Next.js",
-        "Pandas"
+        "Pandas",
+        "Jupyter Notebook"
       ]
     }
   ],
@@ -215,6 +219,8 @@
     "Multi-Agent Orchestration Frameworks",
     "Continuous Portfolio Monitoring Agents",
     "Voice AI & Autonomous Business Solutions",
-    "Performance Optimization for Three.js Web Experiences"
+    "Performance Optimization for Three.js Web Experiences",
+    "Continuous Portfolio & Activity Monitoring Agents",
+    "Intelligent Document Processing (IDP) refinement using LLMs"
   ]
 }
