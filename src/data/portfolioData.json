@@ -200,6 +200,18 @@
       "desc": "AI-based Intelligent Document Processing using OCR and NLP",
       "link": "https://ai-idp-ocr-invoice.vercel.app",
       "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80"
+    },
+    {
+      "title": "Creative Software Engineer Portfolio",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "CSS"
+      ],
+      "desc": "A clean, highly responsive personal software engineering portfolio built to showcase live project activities, core competencies, and professional automations.",
+      "link": "https://github.com/akshat2685/AKSHAT_software_engineer",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80"
     }
   ],
   "certifications": [
