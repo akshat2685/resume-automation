@@ -11,7 +11,9 @@
         "Agentic Workflows",
         "NLP (Natural Language Processing)",
         "LangChain",
-        "Intelligent Document Processing (IDP)"
+        "Intelligent Document Processing (IDP)",
+        "Multi-Agent Orchestration",
+        "FastAPI"
       ]
     },
     {
@@ -20,7 +22,8 @@
         "3D Modeling",
         "Blender",
         "Three.js / R3F",
-        "GLTF/GLB Assets"
+        "GLTF/GLB Assets",
+        "React Three Fiber"
       ]
     },
     {
@@ -51,7 +54,8 @@
         "React",
         "Next.js",
         "Pandas",
-        "Jupyter Notebook"
+        "Jupyter Notebook",
+        "Tailwind CSS"
       ]
     }
   ],
@@ -221,6 +225,9 @@
     "Voice AI & Autonomous Business Solutions",
     "Performance Optimization for Three.js Web Experiences",
     "Continuous Portfolio & Activity Monitoring Agents",
-    "Intelligent Document Processing (IDP) refinement using LLMs"
+    "Intelligent Document Processing (IDP) refinement using LLMs",
+    "Autonomous Multi-Agent Orchestration Frameworks",
+    "Continuous Activity Monitoring & Automated Portfolio Sync",
+    "Real-time CRM Intelligence & Lead Qualification Pipelines"
   ]
 }
