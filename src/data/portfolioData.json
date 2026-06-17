@@ -36,7 +36,8 @@
         "Kotlin",
         "HTML/CSS",
         "PowerShell",
-        "Bash"
+        "Bash",
+        "Batchfile"
       ]
     },
     {
@@ -55,7 +56,8 @@
         "Next.js",
         "Pandas",
         "Jupyter Notebook",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "Node.js"
       ]
     }
   ],
@@ -241,6 +243,7 @@
     "Autonomous Multi-Agent Orchestration Frameworks",
     "Continuous Activity Monitoring & Automated Portfolio Sync",
     "Real-time CRM Intelligence & Lead Qualification Pipelines",
-    "Continuous Portfolio Activity Monitoring & Automated Sync"
+    "Continuous Portfolio Activity Monitoring & Automated Sync",
+    "Continuous Portfolio Activity Monitoring & Automated Sync Systems"
   ]
 }
