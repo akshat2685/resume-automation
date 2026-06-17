@@ -15,7 +15,9 @@
         "Multi-Agent Orchestration",
         "FastAPI",
         "RAG (Retrieval-Augmented Generation)",
-        "Prompt Engineering"
+        "Prompt Engineering",
+        "Function Calling",
+        "Vector Databases"
       ]
     },
     {
@@ -59,7 +61,8 @@
         "Pandas",
         "Jupyter Notebook",
         "Tailwind CSS",
-        "Node.js"
+        "Node.js",
+        "PostgreSQL"
       ]
     }
   ],
