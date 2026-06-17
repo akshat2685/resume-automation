@@ -13,7 +13,9 @@
         "LangChain",
         "Intelligent Document Processing (IDP)",
         "Multi-Agent Orchestration",
-        "FastAPI"
+        "FastAPI",
+        "RAG (Retrieval-Augmented Generation)",
+        "Prompt Engineering"
       ]
     },
     {
