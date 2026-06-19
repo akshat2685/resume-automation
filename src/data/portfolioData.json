@@ -6,7 +6,9 @@
         "AI Agents",
         "Workflow Automation",
         "OpenAI API",
-        "OCR Solutions"
+        "Gemini API",
+        "OCR Solutions",
+        "LangChain"
       ]
     },
     {
@@ -25,6 +27,7 @@
         "TypeScript",
         "JavaScript",
         "C++",
+        "Kotlin",
         "HTML/CSS"
       ]
     },
@@ -34,8 +37,9 @@
         "Git",
         "GitHub",
         "Vite",
-        "Linux",
-        "Docker"
+        "Vercel",
+        "Docker",
+        "Playwright"
       ]
     }
   ],
@@ -62,6 +66,28 @@
     }
   ],
   "projects": [
+    {
+      "title": "AI Sales Agent",
+      "tech": [
+        "Python",
+        "AI Agents",
+        "OpenAI API"
+      ],
+      "desc": "An autonomous AI sales representative engineered for automated lead outreach, product demonstration scripting, and intelligent customer inquiry handling.",
+      "link": "https://github.com/akshat2685/sales_agent",
+      "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+    },
+    {
+      "title": "Resume Automation Website",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Vite"
+      ],
+      "desc": "The deployed portfolio experience that syncs technical activity, highlights projects, and keeps the website content current.",
+      "link": "https://resume-automation-zeta.vercel.app",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
+    },
     {
       "title": "Lead Agent MVP",
       "tech": [
@@ -96,6 +122,16 @@
       "img": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80"
     },
     {
+      "title": "Food Ordering App",
+      "tech": [
+        "Kotlin",
+        "Android SDK"
+      ],
+      "desc": "A native mobile application providing a seamless food ordering experience with intuitive UI, menus, and state management.",
+      "link": "https://github.com/akshat2685/Food-ordering-app-",
+      "img": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80"
+    },
+    {
       "title": "Python AI Chat Assistant",
       "tech": [
         "Python",
@@ -126,9 +162,10 @@
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
+    "Continuous Monitoring Agents",
     "Lead Automation Systems",
     "CRM Intelligence Workflows",
     "Voice AI Solutions",
-    "Autonomous Business Agents"
+    "Multi-Agent Orchestration Frameworks"
   ]
 }
