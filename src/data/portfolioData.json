@@ -8,7 +8,10 @@
         "OpenAI API",
         "Gemini API",
         "OCR Solutions",
-        "LangChain"
+        "LangChain",
+        "Python",
+        "TypeScript",
+        "PowerShell"
       ]
     },
     {
@@ -81,7 +84,6 @@
       "title": "Resume Automation Website",
       "tech": [
         "TypeScript",
-        "React",
         "Vite"
       ],
       "desc": "The deployed portfolio experience that syncs technical activity, highlights projects, and keeps the website content current.",
@@ -150,6 +152,17 @@
       "desc": "Automated lead classification and processing pipeline designed for intelligent workflow automation.",
       "link": "https://github.com/akshat2685/lead-genie-pipeline",
       "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+    },
+    {
+      "title": "Resume Automation",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "PowerShell"
+      ],
+      "desc": "An automated system that continuously monitors developer activities, uses agentic workflows to structure resume data, and deploys 3D portfolio experiences.",
+      "link": "https://github.com/akshat2685/resume-automation",
+      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
     }
   ],
   "certifications": [
@@ -158,7 +171,9 @@
     "TryHackMe Cyber Security Training",
     "Red Hat Linux Training",
     "Introduction to C++",
-    "Introduction to Python"
+    "Introduction to Python",
+    "Python Certification",
+    "TypeScript Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
@@ -166,6 +181,8 @@
     "Lead Automation Systems",
     "CRM Intelligence Workflows",
     "Voice AI Solutions",
-    "Multi-Agent Orchestration Frameworks"
+    "Multi-Agent Orchestration Frameworks",
+    "AI Resume Automation",
+    "Python Chatbot Development"
   ]
 }
