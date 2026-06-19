@@ -9,7 +9,7 @@
 }
 
 @layer base {
-  html, body, #root {
+  html, body, #app {
     @apply bg-background text-primary min-h-screen overflow-x-hidden;
     margin: 0;
     padding: 0;

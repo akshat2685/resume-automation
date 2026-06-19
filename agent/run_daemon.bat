@@ -1,3 +1,3 @@
 @echo off
-cd /d "%~dp0.."
-start "" ".venv\Scripts\pythonw.exe" "agent\monitor_daemon.py"
+cd /d "%~dp0"
+start "" pythonw.exe "%~dp0monitor_daemon.py"

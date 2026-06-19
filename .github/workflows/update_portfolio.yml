@@ -9,9 +9,9 @@ on:
 jobs:
   update-portfolio:
     runs-on: ubuntu-latest
-    
+
     permissions:
-      contents: write # Needed to commit and push changes back
+      contents: write
 
     steps:
       - name: Check out repository
@@ -32,13 +32,14 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: "true"
         run: python agent/update_agent.py
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "portfolio-bot[bot]"
           git config --global user.email "portfolio-bot[bot]@users.noreply.github.com"
-          
+
           # Check if there are changes to commit
           if git diff --quiet src/data/portfolioData.json agent/activity_inputs.txt; then
             echo "No changes detected. Skipping commit."

@@ -1,6 +1,8 @@
 # Register the Portfolio Monitor Daemon
 $taskName = "PortfolioMonitorDaemon"
-$actionScript = "C:\Users\ijain\Desktop\akshat\resume-automation\agent\run_daemon.bat"
+# Use $PSScriptRoot for dynamic path resolution (works regardless of where project lives)
+$actionScript = Join-Path $PSScriptRoot "run_daemon.bat"
+$projectRoot = (Get-Item $PSScriptRoot).Parent.FullName
 $startupFolder = "C:\Users\ijain\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 $shortcutPath = Join-Path $startupFolder "PortfolioMonitorDaemon.lnk"
 
@@ -22,10 +24,10 @@ try {
     $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c `"$actionScript`""
     $trigger = New-ScheduledTaskTrigger -AtLogon
     $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-    
+
     Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Description "Continuous background monitoring daemon for Akshat's Portfolio Updates." -ErrorAction Stop
     Write-Host "SUCCESS: Task registered successfully in Windows Task Scheduler."
-    
+
     # Remove startup folder shortcut if it exists to avoid double running
     if (Test-Path $shortcutPath) {
         Remove-Item $shortcutPath -Force
@@ -42,14 +44,14 @@ try {
         Write-Host "Startup shortcut already exists. Re-creating to ensure correct path..."
         Remove-Item $shortcutPath -Force
     }
-    
+
     $WshShell = New-Object -ComObject WScript.Shell
     $Shortcut = $WshShell.CreateShortcut($shortcutPath)
     $Shortcut.TargetPath = $actionScript
-    $Shortcut.WorkingDirectory = "C:\Users\ijain\Desktop\akshat\resume-automation"
+    $Shortcut.WorkingDirectory = $projectRoot
     $Shortcut.WindowStyle = 7 # Minimized / Runs in background window
     $Shortcut.Save()
-    
+
     Write-Host "SUCCESS: Shortcut created in User Startup folder: $shortcutPath"
     Write-Host "The daemon will start automatically whenever you log on to Windows."
 } catch {
