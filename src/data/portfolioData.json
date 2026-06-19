@@ -44,6 +44,16 @@
         "Docker",
         "Playwright"
       ]
+    },
+    {
+      "category": "Web Development",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "Next.js"
+      ]
     }
   ],
   "services": [
@@ -66,6 +76,10 @@
     {
       "title": "Python Systems & R&D",
       "desc": "Developing custom algorithms, chatbot scripts, and backend logic using Python and AI APIs."
+    },
+    {
+      "title": "Web Development",
+      "desc": "Designing and building scalable web applications using modern front-end and back-end technologies."
     }
   ],
   "projects": [
@@ -163,6 +177,18 @@
       "desc": "An automated system that continuously monitors developer activities, uses agentic workflows to structure resume data, and deploys 3D portfolio experiences.",
       "link": "https://github.com/akshat2685/resume-automation",
       "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
+    },
+    {
+      "title": "AI SOC MVP",
+      "tech": [
+        "Python",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "desc": "An autonomous AI system for security operations and compliance.",
+      "link": "https://github.com/akshat2685/ai-soc-mvp",
+      "img": "https://images.unsplash.com/photo-1498217832867-8c8b9c1a5a6c?w=800&q=80"
     }
   ],
   "certifications": [
