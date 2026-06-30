@@ -31,7 +31,12 @@
         "JavaScript",
         "C++",
         "Kotlin",
-        "HTML/CSS"
+        "HTML/CSS",
+        "PLpgSQL",
+        "Mako",
+        "Go Template",
+        "Shell",
+        "Open Policy Agent"
       ]
     },
     {
@@ -80,6 +85,10 @@
     {
       "title": "Web Development",
       "desc": "Designing and building scalable web applications using modern front-end and back-end technologies."
+    },
+    {
+      "title": "AI SOC Development",
+      "desc": "Designing and developing autonomous AI systems for security operations and compliance."
     }
   ],
   "projects": [
@@ -168,17 +177,6 @@
       "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
     },
     {
-      "title": "Resume Automation",
-      "tech": [
-        "Python",
-        "TypeScript",
-        "PowerShell"
-      ],
-      "desc": "An automated system that continuously monitors developer activities, uses agentic workflows to structure resume data, and deploys 3D portfolio experiences.",
-      "link": "https://github.com/akshat2685/resume-automation",
-      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
-    },
-    {
       "title": "AI SOC MVP",
       "tech": [
         "Python",
@@ -189,6 +187,24 @@
       "desc": "An autonomous AI system for security operations and compliance.",
       "link": "https://github.com/akshat2685/ai-soc-mvp",
       "img": "https://images.unsplash.com/photo-1498217832867-8c8b9c1a5a6c?w=800&q=80"
+    },
+    {
+      "title": "AI SOC Development",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "PLpgSQL",
+        "Mako",
+        "Go Template",
+        "Shell",
+        "Open Policy Agent"
+      ],
+      "desc": "Designing and developing autonomous AI systems for security operations and compliance.",
+      "link": "https://github.com/akshat2685/AKSHAT_software_engineer",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
     }
   ],
   "certifications": [
@@ -199,7 +215,8 @@
     "Introduction to C++",
     "Introduction to Python",
     "Python Certification",
-    "TypeScript Certification"
+    "TypeScript Certification",
+    "AI SOC Development Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
@@ -209,6 +226,7 @@
     "Voice AI Solutions",
     "Multi-Agent Orchestration Frameworks",
     "AI Resume Automation",
-    "Python Chatbot Development"
+    "Python Chatbot Development",
+    "AI SOC Development"
   ]
 }
