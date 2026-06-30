@@ -10,9 +10,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configure APIs
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("CLOUD_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_USERNAME = "akshat2685"
+
+# NVIDIA NIM configuration (fallback provider)
+NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
+NVIDIA_MODEL = "meta/llama-3.1-8b-instruct"
 
 # Detect if running in CI (GitHub Actions)
 IS_CI = os.getenv("CI", "").lower() == "true"
@@ -135,12 +140,69 @@ def git_commit_and_push():
     except Exception as e:
         print(f"Error during Git commit/push: {e}")
 
-def run_agent():
+def call_gemini(prompt: str) -> str:
+    """Call Gemini API. Raises on any error (quota, auth, etc.) so caller can fall back."""
     if not GEMINI_API_KEY:
-        print("Warning: GEMINI_API_KEY environment variable is not set. Running in dry-run/mock mode.")
-        return
-
+        raise ValueError("GEMINI_API_KEY not set")
     genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
+    return response.text.strip()
+
+def call_nvidia_nim(prompt: str) -> str:
+    """Call NVIDIA NIM API as fallback. Raises on any error."""
+    if not NVIDIA_API_KEY:
+        raise ValueError("NVIDIA_API_KEY not set")
+    headers = {
+        "Authorization": f"Bearer {NVIDIA_API_KEY}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": NVIDIA_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.3,
+        "max_tokens": 4000,
+    }
+    response = requests.post(
+        f"{NVIDIA_BASE_URL}/chat/completions",
+        headers=headers,
+        json=payload,
+        timeout=60,
+    )
+    if response.status_code != 200:
+        raise Exception(f"NVIDIA NIM API error: {response.status_code} - {response.text}")
+    return response.json()["choices"][0]["message"]["content"].strip()
+
+def call_llm(prompt: str) -> str:
+    """Try Gemini first; fall back to NVIDIA NIM on quota/auth/any error.
+
+    Uses whichever provider has available quota. Falls back gracefully so the
+    weekly Saturday update never silently fails due to one provider's limits.
+    """
+    # Provider 1: Gemini (preferred)
+    if GEMINI_API_KEY:
+        try:
+            print("Trying Gemini (gemini-2.0-flash)...")
+            result = call_gemini(prompt)
+            print("Gemini succeeded.")
+            return result, "gemini-2.0-flash"
+        except Exception as e:
+            print(f"Gemini failed ({type(e).__name__}): {e}")
+            print("Falling back to NVIDIA NIM...")
+    else:
+        print("GEMINI_API_KEY not set. Using NVIDIA NIM.")
+
+    # Provider 2: NVIDIA NIM (fallback)
+    if not NVIDIA_API_KEY:
+        raise ValueError("No LLM provider available: both GEMINI_API_KEY and NVIDIA_API_KEY are missing/failed.")
+    result = call_nvidia_nim(prompt)
+    print("NVIDIA NIM succeeded.")
+    return result, NVIDIA_MODEL
+
+def run_agent():
+    if not GEMINI_API_KEY and not NVIDIA_API_KEY:
+        print("Warning: Neither GEMINI_API_KEY nor NVIDIA_API_KEY is set. Running in dry-run/mock mode.")
+        return
 
     try:
         current_data = load_current_data()
@@ -155,9 +217,6 @@ def run_agent():
     if not github_data and not local_activities and not daily_logs:
         print("No new activity found. Portfolio is up to date.")
         return
-
-    print("Analyzing updates with Gemini...")
-    model = genai.GenerativeModel("gemini-2.0-flash")
 
     prompt = f"""You are an intelligent Resume and Portfolio update agent for Akshat Jain.
 Your task is to review new technical activities and intelligently MERGE them into the existing portfolio data.
@@ -218,10 +277,10 @@ NEW CONTINUOUS MONITORING LOGS (Daily background checks):
 Return the COMPLETE updated JSON payload now:"""
 
     try:
-        response = model.generate_content(prompt)
-        response_text = response.text.strip()
+        response_text, model_used = call_llm(prompt)
+        raw_response = response_text  # Keep a copy for error reporting
 
-        # Strip markdown code fences if Gemini added them anyway
+        # Strip markdown code fences if the model added them anyway
         if response_text.startswith("```json"):
             response_text = response_text[7:]
         elif response_text.startswith("```"):
@@ -230,16 +289,23 @@ Return the COMPLETE updated JSON payload now:"""
             response_text = response_text[:-3]
         response_text = response_text.strip()
 
+        # Extract JSON from response (handles extra trailing text)
+        start = response_text.find('{')
+        end = response_text.rfind('}') + 1
+        if start >= 0 and end > start:
+            response_text = response_text[start:end]
+
         updated_data = json.loads(response_text)
 
         # Verify structure
         required_keys = ["skills", "services", "projects", "certifications", "currentlyBuilding"]
         if not all(key in updated_data for key in required_keys):
-            print("Error: Gemini returned JSON with missing structure keys.")
+            print(f"Error: {model_used} returned JSON with missing structure keys.")
             print("Response:", response_text[:500])
             return
 
         save_data(updated_data)
+        print(f"Portfolio data updated using {model_used}.")
 
         # Only push from local daemon, NOT from CI (GitHub Actions handles its own commit)
         if not IS_CI:
@@ -253,8 +319,8 @@ Return the COMPLETE updated JSON payload now:"""
         print("Portfolio update completed successfully.")
 
     except json.JSONDecodeError as e:
-        print(f"Error: Gemini returned invalid JSON: {e}")
-        print("Raw response (first 500 chars):", response_text[:500] if 'response_text' in dir() else "N/A")
+        print(f"Error: LLM returned invalid JSON: {e}")
+        print("Raw response (first 500 chars):", raw_response[:500] if 'raw_response' in dir() else "N/A")
     except Exception as e:
         print(f"Error during AI reasoning or update: {e}")
 

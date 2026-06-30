@@ -1,60 +1,66 @@
-# Register the Portfolio Monitor Daemon
-$taskName = "PortfolioMonitorDaemon"
-# Use $PSScriptRoot for dynamic path resolution (works regardless of where project lives)
-$actionScript = Join-Path $PSScriptRoot "run_daemon.bat"
-$projectRoot = (Get-Item $PSScriptRoot).Parent.FullName
-$startupFolder = "C:\Users\ijain\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-$shortcutPath = Join-Path $startupFolder "PortfolioMonitorDaemon.lnk"
+<#
+.SYNOPSIS
+    Registers the Portfolio Monitor Daemon as a Windows Scheduled Task (runs at user logon).
 
-if (-not (Test-Path $actionScript)) {
-    Write-Error "Action script not found at: $actionScript"
+.DESCRIPTION
+    Creates a scheduled task that runs monitor_daemon.py in the background at user logon.
+    Runs with highest privileges, hidden window. Restarts on failure.
+#>
+
+param(
+    [string]$AgentPath = "C:\Users\ijain\resume-automation\agent",
+    [string]$TaskName = "PortfolioMonitorDaemon",
+    [string]$Description = "Continuous monitoring daemon for GitHub, LinkedIn, Certificates, Local Repos. Pushes weekly update Saturday 8 PM IST."
+)
+
+# Path to python and script
+$PythonExe = (Get-Command python).Source
+$ScriptPath = Join-Path $AgentPath "monitor_daemon.py"
+$WorkingDir = $AgentPath
+
+if (-not (Test-Path $PythonExe)) {
+    Write-Error "Python not found in PATH"
+    exit 1
+}
+if (-not (Test-Path $ScriptPath)) {
+    Write-Error "Script not found: $ScriptPath"
     exit 1
 }
 
-# Try registering via Task Scheduler first
-Write-Host "Attempting to register task '$taskName' in Windows Task Scheduler..."
+Write-Host "Registering task '$TaskName'..."
+Write-Host "Python: $PythonExe"
+Write-Host "Script: $ScriptPath"
+Write-Host "Working Dir: $WorkingDir"
+
+# Create action
+$Action = New-ScheduledTaskAction -Execute $PythonExe -Argument "`"$ScriptPath`"" -WorkingDirectory $WorkingDir
+
+# Trigger: At logon of any user
+$Trigger = New-ScheduledTaskTrigger -AtLogon -RandomDelay 00:02:00
+
+# Settings
+$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -StartWhenAvailable `
+    -RestartInterval (New-TimeSpan -Minutes 5) -RestartCount 3 `
+    -ExecutionTimeLimit (New-TimeSpan -Hours 0) `
+    -Hidden -RunOnlyIfNetworkAvailable
+
+# Principal: Current user, highest privileges
+$Principal = New-ScheduledTaskPrincipal -UserId (whoami) -LogonType Interactive -RunLevel Highest
+
+# Register task
 try {
-    # Check if task already exists
-    $existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
-    if ($existingTask) {
-        Write-Host "Task '$taskName' already exists in Task Scheduler. Unregistering existing task..."
-        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction Stop
-    }
-
-    $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c `"$actionScript`""
-    $trigger = New-ScheduledTaskTrigger -AtLogon
-    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-
-    Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Description "Continuous background monitoring daemon for Akshat's Portfolio Updates." -ErrorAction Stop
-    Write-Host "SUCCESS: Task registered successfully in Windows Task Scheduler."
-
-    # Remove startup folder shortcut if it exists to avoid double running
-    if (Test-Path $shortcutPath) {
-        Remove-Item $shortcutPath -Force
-    }
-    exit 0
+    Register-ScheduledTask -TaskName $TaskName -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal -Description $Description -Force
+    Write-Host "✅ Task '$TaskName' registered successfully!" -ForegroundColor Green
+    Write-Host "It will start automatically at next logon, or run manually with:"
+    Write-Host "  Start-ScheduledTask -TaskName '$TaskName'"
 } catch {
-    Write-Warning "Could not register via Task Scheduler (often due to missing Admin permissions): $_"
+    Write-Error "Failed to register task: $_"
+    exit 1
 }
 
-# Fallback: Register in Windows Startup folder (requires no elevation/permissions)
-Write-Host "Falling back to registering in the Windows User Startup folder..."
-try {
-    if (Test-Path $shortcutPath) {
-        Write-Host "Startup shortcut already exists. Re-creating to ensure correct path..."
-        Remove-Item $shortcutPath -Force
-    }
-
-    $WshShell = New-Object -ComObject WScript.Shell
-    $Shortcut = $WshShell.CreateShortcut($shortcutPath)
-    $Shortcut.TargetPath = $actionScript
-    $Shortcut.WorkingDirectory = $projectRoot
-    $Shortcut.WindowStyle = 7 # Minimized / Runs in background window
-    $Shortcut.Save()
-
-    Write-Host "SUCCESS: Shortcut created in User Startup folder: $shortcutPath"
-    Write-Host "The daemon will start automatically whenever you log on to Windows."
-} catch {
-    Write-Error "Failed to register daemon in Startup folder: $_"
-    exit 1
+# Optional: Start immediately
+$StartNow = Read-Host "Start the daemon now? (y/n)"
+if ($StartNow -eq 'y') {
+    Start-ScheduledTask -TaskName $TaskName
+    Write-Host "Daemon started. Check logs at: $AgentPath\daemon.log"
 }

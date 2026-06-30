@@ -29,3 +29,5 @@ dist-ssr
 __pycache__/
 *.pyc
 agent/linkedin_profile_temp/
+agent/daily_logs.json
+agent/daemon.log
