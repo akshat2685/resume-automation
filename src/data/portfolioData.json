@@ -11,7 +11,10 @@
         "LangChain",
         "Python",
         "TypeScript",
-        "PowerShell"
+        "PowerShell",
+        "CSS",
+        "JavaScript",
+        "HTML"
       ]
     },
     {
@@ -36,7 +39,11 @@
         "Mako",
         "Go Template",
         "Shell",
-        "Open Policy Agent"
+        "Open Policy Agent",
+        "Batchfile",
+        "Dockerfile",
+        "Makefile",
+        "PowerShell"
       ]
     },
     {
@@ -93,15 +100,63 @@
   ],
   "projects": [
     {
-      "title": "AI Sales Agent",
+      "title": "aios",
+      "tech": [
+        "TypeScript",
+        "Python",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "desc": "An autonomous AI system designed for intelligent workflow automation and business operations.",
+      "link": "https://github.com/akshat2685/aios",
+      "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+    },
+    {
+      "title": "security-questionnaire-platform",
       "tech": [
         "Python",
-        "AI Agents",
-        "OpenAI API"
+        "TypeScript",
+        "CSS",
+        "Dockerfile",
+        "JavaScript"
       ],
-      "desc": "An autonomous AI sales representative engineered for automated lead outreach, product demonstration scripting, and intelligent customer inquiry handling.",
-      "link": "https://github.com/akshat2685/sales_agent",
-      "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+      "desc": "A platform for creating and managing security questionnaires using AI and automation.",
+      "link": "https://github.com/akshat2685/security-questionnaire-platform",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
+    },
+    {
+      "title": "digital-product-system",
+      "tech": [
+        "Python",
+        "Batchfile"
+      ],
+      "desc": "A system for creating and managing digital products using AI and automation.",
+      "link": "https://github.com/akshat2685/digital-product-system",
+      "img": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80"
+    },
+    {
+      "title": "AI SOC MVP",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Shell",
+        "HTML",
+        "CSS",
+        "PLpgSQL",
+        "Makefile",
+        "Go Template",
+        "Jupyter Notebook",
+        "Cypher",
+        "Dockerfile",
+        "PowerShell",
+        "Mako",
+        "Open Policy Agent"
+      ],
+      "desc": "A minimum viable product for autonomous AI systems for security operations and compliance.",
+      "link": "https://github.com/akshat2685/ai-soc-mvp",
+      "img": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
     },
     {
       "title": "Resume Automation Website",
@@ -216,7 +271,8 @@
     "Introduction to Python",
     "Python Certification",
     "TypeScript Certification",
-    "AI SOC Development Certification"
+    "AI SOC Development Certification",
+    "Python AI Chatbot Development Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
