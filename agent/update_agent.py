@@ -245,10 +245,10 @@ CRITICAL RULES — follow these exactly:
    - NEVER duplicate a skill that already exists.
    - Keep each category to a maximum of 6 items.
 
-2. **projects** (array of objects with title, tech, desc, link, img):
+2. **projects** (array of objects with title, tech, desc, link, emoji):
    - INSERT new projects at the BEGINNING of the array (index 0) so the most recent projects appear first.
    - Keep a maximum of 8 projects total. If adding a new one would exceed 8, remove the OLDEST project (last in the array).
-   - For img, use an Unsplash URL with a relevant tech keyword: https://images.unsplash.com/photo-XXXXX?w=800&q=80 (use a real photo ID from common tech stock photos).
+   - For emoji, select a single highly relevant and professional emoji character (e.g., 🤖, 💻, 🛡️, 📄, 🌐) representing the project's domain.
 
 3. **certifications** (array of strings):
    - INSERT new certifications at the BEGINNING of the array (most recent first).

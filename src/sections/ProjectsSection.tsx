@@ -33,8 +33,10 @@ export function ProjectsSection() {
                   Live Project
                 </a>
               </div>
-              <div className="w-full md:w-1/2 h-64 md:h-auto min-h-[300px] rounded-[30px] overflow-hidden">
-                <img src={p.img} alt={p.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" />
+              <div className="w-full md:w-1/2 h-64 md:h-auto min-h-[300px] rounded-[30px] border border-primary/10 bg-primary/5 flex items-center justify-center text-8xl select-none hover:bg-primary/10 hover:border-primary/20 transition-all duration-500 group">
+                <div className="transform group-hover:scale-125 transition-transform duration-500">
+                  {p.emoji || '🚀'}
+                </div>
               </div>
             </div>
           ))}
