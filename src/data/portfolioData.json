@@ -100,6 +100,13 @@
   ],
   "projects": [
     {
+      "title": "Advanced Automation Safety Certification",
+      "tech": [],
+      "desc": "Completed Advanced Automation Safety Certification.",
+      "link": "",
+      "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+    },
+    {
       "title": "aios",
       "tech": [
         "TypeScript",
@@ -263,6 +270,7 @@
     }
   ],
   "certifications": [
+    "Advanced Automation Safety Certification",
     "Deloitte Technology Job Simulation",
     "Google Discover AI in Daily Life",
     "TryHackMe Cyber Security Training",
