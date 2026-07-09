@@ -18,7 +18,9 @@ export function ProjectsSection() {
             <div key={i} className="sticky top-24 md:top-32 border-2 border-primary/20 bg-background/80 backdrop-blur-xl rounded-[40px] p-6 sm:p-10 flex flex-col md:flex-row gap-10">
               <div className="w-full md:w-1/2 flex flex-col justify-between">
                 <div>
-                  <div className="text-[4rem] font-black hero-heading mb-4 leading-none">0{i + 1}</div>
+                  <div className="text-[4rem] font-black hero-heading mb-4 leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
                   <h3 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight mb-6">{p.title}</h3>
                   <p className="text-primary/70 text-lg mb-8">{p.desc}</p>
                   <div className="flex flex-wrap gap-3 mb-10">

@@ -14,12 +14,28 @@ param(
 )
 
 # Path to python and script
-$PythonExe = (Get-Command python).Source
+$LocalVenvPython = Join-Path $AgentPath "..\.venv\Scripts\python.exe"
+if (Test-Path $LocalVenvPython) {
+    $PythonExe = (Resolve-Path $LocalVenvPython).Path
+    Write-Host "Using virtual environment python: $PythonExe"
+} else {
+    $PythonCmd = Get-Command python -ErrorAction SilentlyContinue
+    if ($null -eq $PythonCmd) {
+        Write-Error "Python not found in PATH"
+        exit 1
+    }
+    if ($PythonCmd -is [array]) {
+        $PythonExe = $PythonCmd[0].Source
+    } else {
+        $PythonExe = $PythonCmd.Source
+    }
+}
+
 $ScriptPath = Join-Path $AgentPath "monitor_daemon.py"
 $WorkingDir = $AgentPath
 
 if (-not (Test-Path $PythonExe)) {
-    Write-Error "Python not found in PATH"
+    Write-Error "Python executable not found at: $PythonExe"
     exit 1
 }
 if (-not (Test-Path $ScriptPath)) {

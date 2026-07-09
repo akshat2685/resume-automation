@@ -124,21 +124,35 @@ def git_commit_and_push():
         if not status_res.stdout.strip():
             print("No changes in portfolio data. Skipping git commit and push.")
             return
-
         print("Committing and pushing changes to GitHub...")
         subprocess.run(["git", "add", PORTFOLIO_DATA_PATH], check=True)
         subprocess.run(["git", "commit", "-m", "chore: auto-update portfolio data with weekly activities"], check=True)
 
         if GITHUB_TOKEN:
             push_url = f"https://{GITHUB_TOKEN}@github.com/akshat2685/resume-automation.git"
-            subprocess.run(["git", "push", push_url, "main"], check=True)
+            # Prevent printing the GITHUB_TOKEN in traceback/stdout by capturing output and handling failure manually
+            res = subprocess.run(["git", "push", push_url, "main"], capture_output=True, text=True)
+            if res.returncode != 0:
+                # Sanitize token from output/error message
+                err_msg = res.stderr or ""
+                if GITHUB_TOKEN in err_msg:
+                    err_msg = err_msg.replace(GITHUB_TOKEN, "********")
+                print(f"Git push failed (exit code {res.returncode}): {err_msg.strip()}")
+                raise Exception("Git push failed. Token hidden for security.")
         else:
             subprocess.run(["git", "push", "origin", "main"], check=True)
         print("GitHub push completed successfully.")
     except subprocess.CalledProcessError as e:
-        print(f"Git command failed: {e}")
+        # Clean up token from exception message if it got raised elsewhere
+        cmd_str = str(e.cmd)
+        if GITHUB_TOKEN and GITHUB_TOKEN in cmd_str:
+            cmd_str = cmd_str.replace(GITHUB_TOKEN, "********")
+        print(f"Git command failed: cmd={cmd_str}, returncode={e.returncode}")
     except Exception as e:
-        print(f"Error during Git commit/push: {e}")
+        err_str = str(e)
+        if GITHUB_TOKEN and GITHUB_TOKEN in err_str:
+            err_str = err_str.replace(GITHUB_TOKEN, "********")
+        print(f"Error during Git commit/push: {err_str}")
 
 def call_gemini(prompt: str) -> str:
     """Call Gemini API. Raises on any error (quota, auth, etc.) so caller can fall back."""
@@ -173,7 +187,7 @@ def call_nvidia_nim(prompt: str) -> str:
         raise Exception(f"NVIDIA NIM API error: {response.status_code} - {response.text}")
     return response.json()["choices"][0]["message"]["content"].strip()
 
-def call_llm(prompt: str) -> str:
+def call_llm(prompt: str) -> tuple[str, str]:
     """Try Gemini first; fall back to NVIDIA NIM on quota/auth/any error.
 
     Uses whichever provider has available quota. Falls back gracefully so the

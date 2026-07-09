@@ -195,26 +195,31 @@ def scan_certificates():
             log_message(f"Certificate scan error: {e}")
 
 def copy_browser_profile(src_dir, dest_dir):
-    """Copy browser profile for LinkedIn auth."""
+    """Copy minimal browser profile files (Local State and Cookies) for LinkedIn auth."""
     import shutil
     if not os.path.exists(src_dir):
         return False
     try:
         os.makedirs(dest_dir, exist_ok=True)
-        # Copy essential files
-        for item in ["Local State", "Default"]:
-            src = os.path.join(src_dir, item)
-            dst = os.path.join(dest_dir, item)
-            if os.path.exists(src):
+        # Essential files list relative to src_dir
+        essential_files = [
+            "Local State",
+            os.path.join("Default", "Cookies"),
+            os.path.join("Default", "Network", "Cookies")
+        ]
+        copied_any = False
+        for rel_path in essential_files:
+            src_file = os.path.join(src_dir, rel_path)
+            if os.path.exists(src_file) and os.path.isfile(src_file):
+                dst_file = os.path.join(dest_dir, rel_path)
+                os.makedirs(os.path.dirname(dst_file), exist_ok=True)
                 try:
-                    if os.path.isdir(src):
-                        shutil.copytree(src, dst, dirs_exist_ok=True,
-                                        ignore=shutil.ignore_patterns("Cache*", "*cache*", "*Log*", "*.ldb"))
-                    else:
-                        shutil.copy2(src, dst)
-                except Exception:
-                    pass
-        return True
+                    # Using shutil.copy2 to copy file data and metadata
+                    shutil.copy2(src_file, dst_file)
+                    copied_any = True
+                except Exception as e:
+                    log_message(f"Could not copy {rel_path} (possibly locked/in-use): {e}")
+        return copied_any
     except Exception as e:
         log_message(f"Profile copy error: {e}")
         return False
@@ -388,13 +393,11 @@ def run_daemon():
 
         # Check if we're in the active window (first 15 minutes of the hour)
         in_active_window = current_minute < ACTIVE_WINDOW_MINUTES
-        daily_poll_count = sum(1 for entry in load_daily_logs() 
-                               if datetime.fromisoformat(entry["timestamp"]).date() == current_date)
         
         # Also respect daily max hours (convert to approximate poll count)
         max_polls_per_day = (DAILY_MAX_HOURS * 60) // POLL_INTERVAL_MINUTES
 
-        if in_active_window and daily_poll_count < max_polls_per_day:
+        if in_active_window and daily_polls < max_polls_per_day:
             # Poll at intervals during active window
             if current_minute % POLL_INTERVAL_MINUTES == 0:
                 run_all_polls()

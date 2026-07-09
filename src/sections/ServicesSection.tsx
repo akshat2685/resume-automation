@@ -17,7 +17,7 @@ export function ServicesSection() {
           {SERVICES.map((s, i) => (
             <FadeIn key={i} delay={i * 0.1} y={30} className="border-t border-[#0C0C0C]/10 py-10 sm:py-14 flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
               <div className="text-[3rem] sm:text-[6vw] md:text-[80px] font-black leading-none opacity-20 w-32 shrink-0">
-                0{i + 1}
+                {String(i + 1).padStart(2, '0')}
               </div>
               <div className="flex flex-col gap-4">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-wide">{s.title}</h3>

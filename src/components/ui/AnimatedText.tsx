@@ -1,5 +1,23 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
+
+interface WordProps {
+  word: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+function Word({ word, progress, range }: WordProps) {
+  const opacity = useTransform(progress, range, [0.2, 1]);
+  return (
+    <span style={{ position: 'relative' }}>
+      <span style={{ opacity: 0 }}>{word}</span>
+      <motion.span style={{ opacity, position: 'absolute', left: 0, top: 0 }}>
+        {word}
+      </motion.span>
+    </span>
+  );
+}
 
 export function AnimatedText({ text, className }: { text: string; className?: string }) {
   const container = useRef<HTMLParagraphElement>(null);
@@ -15,14 +33,13 @@ export function AnimatedText({ text, className }: { text: string; className?: st
       {words.map((word, i) => {
         const start = i / words.length;
         const end = start + (1 / words.length);
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
         return (
-          <span key={i} style={{ position: 'relative' }}>
-            <span style={{ opacity: 0 }}>{word}</span>
-            <motion.span style={{ opacity, position: 'absolute', left: 0, top: 0 }}>
-              {word}
-            </motion.span>
-          </span>
+          <Word
+            key={i}
+            word={word}
+            progress={scrollYProgress}
+            range={[start, end]}
+          />
         );
       })}
     </p>
