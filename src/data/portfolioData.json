@@ -14,7 +14,13 @@
         "PowerShell",
         "CSS",
         "JavaScript",
-        "HTML"
+        "HTML",
+        "Shell",
+        "Makefile",
+        "Go Template",
+        "Jupyter Notebook",
+        "Cypher",
+        "Dockerfile"
       ]
     },
     {
@@ -37,9 +43,6 @@
         "HTML/CSS",
         "PLpgSQL",
         "Mako",
-        "Go Template",
-        "Shell",
-        "Open Policy Agent",
         "Batchfile",
         "Dockerfile",
         "Makefile",
@@ -250,6 +253,8 @@
     }
   ],
   "certifications": [
+    "AI SOC Development Certification",
+    "Python AI Chatbot Development Certification",
     "Advanced Automation Safety Certification",
     "Deloitte Technology Job Simulation",
     "Google Discover AI in Daily Life",
@@ -258,9 +263,7 @@
     "Introduction to C++",
     "Introduction to Python",
     "Python Certification",
-    "TypeScript Certification",
-    "AI SOC Development Certification",
-    "Python AI Chatbot Development Certification"
+    "TypeScript Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
