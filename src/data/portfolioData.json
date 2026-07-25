@@ -20,7 +20,10 @@
         "Go Template",
         "Jupyter Notebook",
         "Cypher",
-        "Dockerfile"
+        "Dockerfile",
+        "Standard ML",
+        "HCL",
+        "Mako"
       ]
     },
     {
@@ -46,7 +49,9 @@
         "Batchfile",
         "Dockerfile",
         "Makefile",
-        "PowerShell"
+        "PowerShell",
+        "Standard ML",
+        "HCL"
       ]
     },
     {
@@ -150,6 +155,27 @@
       "desc": "AI-powered invoice processing system that automatically extracts structured information from invoices and documents.",
       "link": "https://github.com/akshat2685/ai-idp-ocr-invoice",
       "emoji": "📄"
+    },
+    {
+      "title": "AI SOC 2",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Shell",
+        "Makefile",
+        "Go Template",
+        "Standard ML",
+        "Jupyter Notebook",
+        "PowerShell",
+        "HCL",
+        "Mako"
+      ],
+      "desc": "This is an addition to the previous version of my repo.",
+      "link": "https://github.com/akshat2685/AI_SOC_2",
+      "emoji": "💻"
     },
     {
       "title": "Food Ordering App",
