@@ -23,7 +23,8 @@
         "Dockerfile",
         "Standard ML",
         "HCL",
-        "Mako"
+        "Mako",
+        "Docker"
       ]
     },
     {
@@ -51,7 +52,8 @@
         "Makefile",
         "PowerShell",
         "Standard ML",
-        "HCL"
+        "HCL",
+        "Docker"
       ]
     },
     {
@@ -117,6 +119,33 @@
   ],
   "projects": [
     {
+      "title": "Security Questionnaire Platform",
+      "tech": [
+        "Python",
+        "TypeScript",
+        "CSS",
+        "Dockerfile",
+        "JavaScript"
+      ],
+      "desc": "A platform for creating and managing security questionnaires using AI and automation.",
+      "link": "https://github.com/akshat2685/security-questionnaire-platform",
+      "emoji": "📝"
+    },
+    {
+      "title": "AIOS",
+      "tech": [
+        "HTML",
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "Python",
+        "Dockerfile"
+      ],
+      "desc": "An autonomous AI system designed for intelligent workflow automation and business operations.",
+      "link": "https://github.com/akshat2685/aios",
+      "emoji": "🤖"
+    },
+    {
       "title": "AI SOC Development",
       "tech": [
         "Python",
@@ -127,11 +156,14 @@
         "PLpgSQL",
         "Mako",
         "Go Template",
-        "Shell",
-        "Open Policy Agent"
+        "Standard ML",
+        "Jupyter Notebook",
+        "PowerShell",
+        "HCL",
+        "Mako"
       ],
       "desc": "Designing and developing autonomous AI systems for security operations and compliance.",
-      "link": "https://github.com/akshat2685/AKSHAT_software_engineer",
+      "link": "https://github.com/akshat2685/AI_SOC_2",
       "emoji": "💻"
     },
     {
@@ -157,45 +189,14 @@
       "emoji": "📄"
     },
     {
-      "title": "AI SOC 2",
+      "title": "Digital Product System",
       "tech": [
         "Python",
-        "TypeScript",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "Shell",
-        "Makefile",
-        "Go Template",
-        "Standard ML",
-        "Jupyter Notebook",
-        "PowerShell",
-        "HCL",
-        "Mako"
+        "Batchfile"
       ],
-      "desc": "This is an addition to the previous version of my repo.",
-      "link": "https://github.com/akshat2685/AI_SOC_2",
-      "emoji": "💻"
-    },
-    {
-      "title": "Food Ordering App",
-      "tech": [
-        "Kotlin",
-        "Android SDK"
-      ],
-      "desc": "A native mobile application providing a seamless food ordering experience with intuitive UI, menus, and state management.",
-      "link": "https://github.com/akshat2685/Food-ordering-app-",
-      "emoji": "🍔"
-    },
-    {
-      "title": "Python AI Chat Assistant",
-      "tech": [
-        "Python",
-        "OpenAI API"
-      ],
-      "desc": "A conversational AI chatbot designed for desktop assistance and text-based problem solving.",
-      "link": "https://github.com/akshat2685/nextjs-ai-chatbot",
-      "emoji": "💬"
+      "desc": "A system for creating and managing digital products using AI and automation.",
+      "link": "https://github.com/akshat2685/digital-product-system",
+      "emoji": "📦"
     },
     {
       "title": "Lead Genie Pipeline",
@@ -241,41 +242,24 @@
       "emoji": "🎯"
     },
     {
-      "title": "Digital Product System",
+      "title": "Food Ordering App",
       "tech": [
-        "Python",
-        "Batchfile"
+        "Kotlin",
+        "Android SDK"
       ],
-      "desc": "A system for creating and managing digital products using AI and automation.",
-      "link": "https://github.com/akshat2685/digital-product-system",
-      "emoji": "📦"
+      "desc": "A native mobile application providing a seamless food ordering experience with intuitive UI, menus, and state management.",
+      "link": "https://github.com/akshat2685/Food-ordering-app-",
+      "emoji": "🍔"
     },
     {
-      "title": "Security Questionnaire Platform",
+      "title": "Python AI Chat Assistant",
       "tech": [
         "Python",
-        "TypeScript",
-        "CSS",
-        "Dockerfile",
-        "JavaScript"
+        "OpenAI API"
       ],
-      "desc": "A platform for creating and managing security questionnaires using AI and automation.",
-      "link": "https://github.com/akshat2685/security-questionnaire-platform",
-      "emoji": "📝"
-    },
-    {
-      "title": "AIOS",
-      "tech": [
-        "HTML",
-        "TypeScript",
-        "JavaScript",
-        "CSS",
-        "Python",
-        "Dockerfile"
-      ],
-      "desc": "An autonomous AI system designed for intelligent workflow automation and business operations.",
-      "link": "https://github.com/akshat2685/aios",
-      "emoji": "🤖"
+      "desc": "A conversational AI chatbot designed for desktop assistance and text-based problem solving.",
+      "link": "https://github.com/akshat2685/nextjs-ai-chatbot",
+      "emoji": "💬"
     }
   ],
   "certifications": [
