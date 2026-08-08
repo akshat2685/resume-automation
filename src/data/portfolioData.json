@@ -24,7 +24,8 @@
         "Standard ML",
         "HCL",
         "Mako",
-        "Docker"
+        "Docker",
+        "Batchfile"
       ]
     },
     {
@@ -85,6 +86,14 @@
         "Keras",
         "Scikit-learn"
       ]
+    },
+    {
+      "category": "Operating Systems",
+      "items": [
+        "TypeScript",
+        "CSS",
+        "HTML"
+      ]
     }
   ],
   "services": [
@@ -119,19 +128,6 @@
   ],
   "projects": [
     {
-      "title": "Security Questionnaire Platform",
-      "tech": [
-        "Python",
-        "TypeScript",
-        "CSS",
-        "Dockerfile",
-        "JavaScript"
-      ],
-      "desc": "A platform for creating and managing security questionnaires using AI and automation.",
-      "link": "https://github.com/akshat2685/security-questionnaire-platform",
-      "emoji": "📝"
-    },
-    {
       "title": "AIOS",
       "tech": [
         "HTML",
@@ -139,32 +135,12 @@
         "JavaScript",
         "CSS",
         "Python",
+        "PowerShell",
         "Dockerfile"
       ],
       "desc": "An autonomous AI system designed for intelligent workflow automation and business operations.",
       "link": "https://github.com/akshat2685/aios",
       "emoji": "🤖"
-    },
-    {
-      "title": "AI SOC Development",
-      "tech": [
-        "Python",
-        "TypeScript",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "PLpgSQL",
-        "Mako",
-        "Go Template",
-        "Standard ML",
-        "Jupyter Notebook",
-        "PowerShell",
-        "HCL",
-        "Mako"
-      ],
-      "desc": "Designing and developing autonomous AI systems for security operations and compliance.",
-      "link": "https://github.com/akshat2685/AI_SOC_2",
-      "emoji": "💻"
     },
     {
       "title": "AI Portfolio & Resume Agent",
@@ -273,7 +249,8 @@
     "Introduction to C++",
     "Introduction to Python",
     "Python Certification",
-    "TypeScript Certification"
+    "TypeScript Certification",
+    "Operating System Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
@@ -286,6 +263,8 @@
     "Python Chatbot Development",
     "AI SOC Development",
     "AIOS",
-    "Digital Product System"
+    "Digital Product System",
+    "Portfolio OS",
+    "Property View"
   ]
 }
