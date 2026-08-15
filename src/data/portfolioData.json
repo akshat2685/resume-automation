@@ -25,7 +25,8 @@
         "HCL",
         "Mako",
         "Docker",
-        "Batchfile"
+        "Batchfile",
+        "TypeScript"
       ]
     },
     {
@@ -54,7 +55,8 @@
         "PowerShell",
         "Standard ML",
         "HCL",
-        "Docker"
+        "Docker",
+        "CSS"
       ]
     },
     {
@@ -94,6 +96,14 @@
         "CSS",
         "HTML"
       ]
+    },
+    {
+      "category": "Frontend Development",
+      "items": [
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ]
     }
   ],
   "services": [
@@ -124,6 +134,10 @@
     {
       "title": "AI SOC Development",
       "desc": "Designing and developing autonomous AI systems for security operations and compliance."
+    },
+    {
+      "title": "Frontend Development",
+      "desc": "Designing and building scalable web applications using modern front-end technologies."
     }
   ],
   "projects": [
@@ -236,6 +250,38 @@
       "desc": "A conversational AI chatbot designed for desktop assistance and text-based problem solving.",
       "link": "https://github.com/akshat2685/nextjs-ai-chatbot",
       "emoji": "💬"
+    },
+    {
+      "title": "Deployland",
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "HTML"
+      ],
+      "desc": "A system for deploying and managing digital products using AI and automation.",
+      "link": "https://github.com/akshat2685/deployland",
+      "emoji": "🤖"
+    },
+    {
+      "title": "My Frontend App",
+      "tech": [
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "desc": "A web application designed for showcasing modern front-end technologies.",
+      "link": "https://github.com/akshat2685/my-frontend-app",
+      "emoji": "📂"
+    },
+    {
+      "title": "Edysor Website",
+      "tech": [
+        "JavaScript",
+        "HTML"
+      ],
+      "desc": "A web application designed for showcasing modern front-end technologies.",
+      "link": "https://github.com/akshat2685/edysor-website",
+      "emoji": "📄"
     }
   ],
   "certifications": [
@@ -265,6 +311,9 @@
     "AIOS",
     "Digital Product System",
     "Portfolio OS",
-    "Property View"
+    "Property View",
+    "Deployland",
+    "My Frontend App",
+    "Edysor Website"
   ]
 }
