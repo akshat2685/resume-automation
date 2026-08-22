@@ -104,6 +104,15 @@
         "JavaScript",
         "HTML"
       ]
+    },
+    {
+      "category": "Operating Systems",
+      "items": [
+        "TypeScript",
+        "CSS",
+        "HTML",
+        "Python"
+      ]
     }
   ],
   "services": [
@@ -138,6 +147,10 @@
     {
       "title": "Frontend Development",
       "desc": "Designing and building scalable web applications using modern front-end technologies."
+    },
+    {
+      "title": "Operating System Development",
+      "desc": "Designing and developing custom operating systems for various use cases."
     }
   ],
   "projects": [
@@ -282,6 +295,29 @@
       "desc": "A web application designed for showcasing modern front-end technologies.",
       "link": "https://github.com/akshat2685/edysor-website",
       "emoji": "📄"
+    },
+    {
+      "title": "Portfolio OS",
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "HTML"
+      ],
+      "desc": "A system for managing and deploying digital products using AI and automation.",
+      "link": "https://github.com/akshat2685/portfolio-os",
+      "emoji": "🤖"
+    },
+    {
+      "title": "Property View",
+      "tech": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "desc": "A system for managing and displaying digital products using AI and automation.",
+      "link": "https://github.com/akshat2685/property-view",
+      "emoji": "🤖"
     }
   ],
   "certifications": [
@@ -296,7 +332,8 @@
     "Introduction to Python",
     "Python Certification",
     "TypeScript Certification",
-    "Operating System Certification"
+    "Operating System Certification",
+    "Operating System Development Certification"
   ],
   "currentlyBuilding": [
     "AI Sales Agents",
